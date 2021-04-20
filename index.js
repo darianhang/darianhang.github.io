@@ -1,188 +1,46 @@
-(function(){
+function getRandomName(retry: number, noSpace: boolean = false): string {
+  var left: string[] = ["admiring", "adoring", "agitated", "amazing", "angry", "awesome", "backstabbing", "berserk", "big", "boring", "clever", "cocky", "compassionate", "condescending", "cranky", "desperate", "determined", "distracted", "dreamy", "drunk", "ecstatic", "elated", "elegant", "evil", "fervent", "focused", "furious", "gigantic", "gloomy", "goofy", "grave", "happy", "high", "hopeful", "hungry", "insane", "jolly", "jovial", "kickass", "lonely", "loving", "mad", "modest", "naughty", "nauseous", "nostalgic", "pedantic", "pensive", "prickly", "reverent", "romantic", "sad", "serene", "sharp", "sick", "silly", "sleepy", "small", "stoic", "stupefied", "suspicious", "tender", "thirsty", "tiny", "trusting"]
+  var right: string[] = ["albattani", "allen", "almeida", "archimedes", "ardinghelli", "aryabhata", "austin", "babbage", "banach", "bardeen", "bartik", "bassi", "bell", "bhabha", "bhaskara", "blackwell", "bohr", "booth", "borg", "bose", "boyd", "brahmagupta", "brattain", "brown", "carson", "chandrasekhar", "colden", "cori", "cray", "curie", "darwin", "davinci", "dijkstra", "dubinsky", "easley", "einstein", "elion", "engelbart", "euclid", "euler", "fermat", "fermi", "feynman", "franklin", "galileo", "gates", "goldberg", "goldstine", "goldwasser", "golick", "goodall", "hamilton", "hawking", "heisenberg", "heyrovsky", "hodgkin", "hoover", "hopper", "hugle", "hypatia", "jang", "jennings", "jepsen", "joliot", "jones", "kalam", "kare", "keller", "khorana", "kilby", "kirch", "knuth", "kowalevski", "lalande", "lamarr", "leakey", "leavitt", "lichterman", "liskov", "lovelace", "lumiere", "mahavira", "mayer", "mccarthy", "mcclintock", "mclean", "mcnulty", "meitner", "meninsky", "mestorf", "minsky", "mirzakhani", "morse", "murdock", "newton", "nobel", "noether", "northcutt", "noyce", "panini", "pare", "pasteur", "payne", "perlman", "pike", "poincare", "poitras", "ptolemy", "raman", "ramanujan", "ride", "ritchie", "roentgen", "rosalind", "saha", "sammet", "shaw", "shirley", "shockley", "sinoussi", "snyder", "spence", "stallman", "stonebraker", "swanson", "swartz", "swirles", "tesla", "thompson", "torvalds", "turing", "varahamihira", "visvesvaraya", "volhard", "wescoff", "williams", "wilson", "wing", "wozniak", "wright", "yalow", "yonath"]
+  var li = Math.floor(Math.random() * left.length);
+  var ri = Math.floor(Math.random() * right.length);
+  var retrySuffix = Math.floor(Math.random() * 10);
 
-    /**
-     * The class to manage the random generator
-     * @constructor
-     */
-    var RandomManager = function() {
-        /**
-         * Initialize the values box
-         * @type {*|jQuery|HTMLElement}
-         */
-        var $valuesBox = $('#values');
+  var lv = left[li];
+  var rv = right[ri];
 
-        /**
-         * The 
-         
-         
-         for the tool
-         * @type {*|jQuery|HTMLElement}
-         */
-        var $instructions = $('#instructions');
-
-        /**
-         * The chooser box
-         * @type {*|jQuery|HTMLElement}
-         */
-        var $chooserBox = $('#chooser');
-
-        /**
-         * The results box
-         * @type {*|jQuery|HTMLElement}
-         */
-        var $resultBox = $('#results');
-
-      var $startButton = $('#startGame');
-      var $valueContainer = $('#valuesBox');
-      var $mimeResultsPicker = $('#mimeResultsPicker');
-      var $resetter = $('#resetter');
-      var arrayOfChoosen = [];
-        /**
-         * The initialization function sort of
-         *
-         * This handles adding all the handlers the DOM items
-         */
-        function addHandlers()
-        {
-         // $valuesBox.on('change keyup blur', handleBoxChange);
-          $startButton.on('click', 'button', handleBoxChange);
-            $chooserBox.on('click', 'button', chooseWinner);
-          $resetter.on('click', 'button', Reset);
-        
-        }
-      
-      function hideHandleBox(){
-        console.log("being tirggered");
-      }
-
-        /**
-         * When the textarea changes, handle it
-         */
-        function handleBoxChange()
-        {
-            if ($valuesBox.val().trim() === '') {
-                $resultBox.fadeOut(200).empty();
-                $chooserBox.fadeOut(200, function() {
-                    $instructions.fadeIn(200);
-                });
-             
-            }
-            else {
-                $instructions.fadeOut(200, function() {
-                    $chooserBox.fadeIn(200);
-                   $mimeResultsPicker.fadeIn(200);
-                  $valueContainer.fadeOut(200);
-                });
-            }
-        }
-
-        /**
-         * Iterates through the winner and chooses
-         */
-        function chooseWinner()
-        {
-            var values = $valuesBox.val().trim().split("\n");
-            if (values.length == 1) {
-                handleOneWinner(values);
-            }
-            else {
-                var chopIt = false;
-                // if it's too small, let's add some more to it for a cool look
-                if (values.length < 20) {
-                    values.push.apply(values, values);
-                }
-                else if (values.length > 50) {
-                    chopIt = true;
-                }
-                shuffleValues(values);
-                if (chopIt) {
-                    // if it's too long, the animation will suck!
-                    values = values.slice(0, 50);
-                  console.log("values after chopped", values);
-                }
-
-                  console.log("values", values[0]);
-              arrayOfChoosen.push(values[0]);
-                 if(arrayOfChoosen.length > 1){
-                   if (arrayOfChoosen.includes(values[0])){
-                  animateResults(values);
-               shuffleValues(values);
-                console.log("duplicate value",arrayOfChoosen);
-                   }
-              }
-             
-           
-                animateResults(values);
-            }
-        }
-
-     
-        /**
-         * Show the results in an animated fashion
-         * @param values
-         */
-        function animateResults(values)
-        {
-            $resultBox.show();
-            // $resultBox[0].scrollTop = 0;
-            $resultBox.empty();
-
-            var resultList = $('<ul />');
-            $.each(values, function(i, value) {
-
-              //resultList.append(value)
-                var li = document.createElement('li');
-                li.appendChild(document.createTextNode(value));
-                resultList.append(li);
-              //console.log("values picked", value)
-            });
-
-            $resultBox.append(resultList);
-            
-            // $resultBox.animate({
-            //     scrollTop: $resultBox[0].scrollHeight
-            // });
-        }
-
-        /**
-         * Shuffle the values
-         * @param values
-         */
-        function shuffleValues(values)
-        {
-            for (var i = values.length - 1; i > 0; i--) {
-                var j = Math.floor(Math.random() * (i + 1));
-                var temp = values[i];
-                values[i] = values[j];
-                values[j] = temp;
-             
-            }
-          
-          
-         
-        }
-
-        /**
-         * When people are being silly and choose only one entry
-         */
-        function handleOneWinner(values)
-        {
-            var winner = values[0];
-            $('main').html('<div class="jumbotron"><h1>ERROR!</h1><h2>There is only one word!</h2>');
-        }
-
-       function Reset(){
-    $chooserBox.fadeOut(200);
-                   $mimeResultsPicker.fadeOut(200);
-                  $valueContainer.fadeIn(200);
+  if (lv === "boring" && rv === "wozniak") {
+    return getRandomName(retry, noSpace);
   }
-        // init the logic
-        addHandlers();
-       $mimeResultsPicker.fadeOut(200);
-    };
-  
- 
 
-    // create the object - it's self managed
-    new RandomManager();
-})();
+  if (retry > 0 && noSpace) {
+    rv += retrySuffix;
+  }
+
+  if (noSpace) {
+    return lv + "_" + rv;
+  }
+
+  return lv + " " + rv;
+}
+
+function getRandomNameView(): void {
+    var randomName = document.querySelector("#random-name");
+  randomName.className = "";
+  randomName.innerHTML = getRandomName();
+  randomName.className = "show-name";
+
+}
+
+function setupListeners(): void {
+  document.addEventListener('click', (ev: MouseEvent) => {
+    getRandomNameView();
+  });
+}
+
+function init(): void {
+  setupListeners();
+  getRandomNameView();
+}
+
+
+init();
