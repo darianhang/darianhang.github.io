@@ -1,52 +1,7 @@
-<div class="container">
-  <h1> PALO ACT</h1>
-  <div>
-
-    <div class="row">
-
-      <div id="valuesBox" class="container-fluid">
-        <h2>Enter words to be charade</h2>
-        <p>Enter each value on a new line. Blank lines will be ignored.</p>
-        <div id="startGame">
-          <button type="button text-center" class="btn btn-success btn-lg">Let's Start</button>
-          <br/>
-          <br/>
-        </div>
-
-        <textarea id="values" class="form-control" rows="15"></textarea>
-      </div>
-
-    </div>
-    <!--               <div class="col-md-6">
-                <div id="startGame">
- <button  type="button text-center" class="btn btn-success btn-lg">Start Game</button>
-          </div>
-             </div> -->
-
+<div id="app">
+  <div id="content">
+      <p id="random-name" class="show-name" onclick="getRandomName()"></p>
   </div>
-  <!--         <p class="lead">Enter random choices.  Get your winner.</p> -->
-
-  <main>
-    <div class="row">
-
-      <div class="col-md-12" id="mimeResultsPicker">
-        <h2>Mime this word:</h2>
-        <p id="instructions"><span class="label label-warning">LOADING!</span></p>
-        <div id="results"></div>
-        <div id="chooser" class="text-center">
-          <hr>
-          <button type="button" class="btn btn-success btn-lg">Mime IT</button>
-        </div>
-        <div id="resetter">
-            <button type="button" class="btn btn-warning btn-lg">Restart</button>
-        </div>
-      </div>
-
-    </div>
-
-    <br>
-
-  </main>
 </div>
   </header>
   <link rel="stylesheet" type="text/css" href="https://darianhang.github.io/index.css">
