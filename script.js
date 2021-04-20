@@ -4,20 +4,6 @@ var Words = [
 var RandomWord = Words[Math.floor(Math.random()*Words.length)];
 alert("Your word is: " + RandomWord);
 var Anwser;
-// Awnser = prompt("Guess the word: ");
-if (Anwser === RandomWord) {
-  alert("You're correct the word was: " + RandomWord);
-  Anwser = prompt("Guess again")
-}
-/*
- * This part of the code makes a function that 
- * tracks your mouse movements and makes the coulor of the line white
- p
- r
- */
-function mouseDragged() {
-  fill(51);
-}
 
 var canvas = document.querySelector("canvas")
 var ctx = canvas.getContext("2d");
