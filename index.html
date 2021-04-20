@@ -1,22 +1,53 @@
-<div class="overlay">
-  <canvas id="world"></canvas>
-  <h1 id="winner"></h1>
-  <svg id="close" aria-hidden="true" data-prefix="far" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10 fa-3x"><path fill="white" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z" class=""></path></svg>
-</div>
+<div class="container">
+  <h1> PALO ACT</h1>
+  <div>
 
-<div class="background">
-  <nav>
-    <div class="navWrapper">
-      <a href="#">RANDOM NAME PICKER</a>
+    <div class="row">
+
+      <div id="valuesBox" class="container-fluid">
+        <h2>Enter words to be charade</h2>
+        <p>Enter each value on a new line. Blank lines will be ignored.</p>
+        <div id="startGame">
+          <button type="button text-center" class="btn btn-success btn-lg">Let's Start</button>
+          <br/>
+          <br/>
+        </div>
+
+        <textarea id="values" class="form-control" rows="15"></textarea>
+      </div>
+
     </div>
-  </nav>
-  
-  <header>
-    <div class="namepicker">
-      <p>Names:</p>
-      <input id="names" type="text" placeholder="Each name followed by a ‘ , ‘">
-      <a href="#" id="pick">Pick a name</a>
+    <!--               <div class="col-md-6">
+                <div id="startGame">
+ <button  type="button text-center" class="btn btn-success btn-lg">Start Game</button>
+          </div>
+             </div> -->
+
+  </div>
+  <!--         <p class="lead">Enter random choices.  Get your winner.</p> -->
+
+  <main>
+    <div class="row">
+
+      <div class="col-md-12" id="mimeResultsPicker">
+        <h2>Mime this word:</h2>
+        <p id="instructions"><span class="label label-warning">LOADING!</span></p>
+        <div id="results"></div>
+        <div id="chooser" class="text-center">
+          <hr>
+          <button type="button" class="btn btn-success btn-lg">Mime IT</button>
+        </div>
+        <div id="resetter">
+            <button type="button" class="btn btn-warning btn-lg">Restart</button>
+        </div>
+      </div>
+
     </div>
+
+    <br>
+
+  </main>
+</div>
   </header>
   <link rel="stylesheet" type="text/css" href="https://darianhang.github.io/index.css">
   <script type="text/javascript" src="https://darianhang.github.io/index.js"></script>
